@@ -1,0 +1,26 @@
+# mac os
+.DS_Store
+
+.idea
+
+# karabiner
+automatic_backups/
+karabiner.json
+
+# nvim
+lazy-lock.json
+
+# tmux plugins
+tmux/plugins
+
+# zsh plugins
+zsh/plugins
+
+# vim plugins
+vim/pack/vendor/start
+
+# envrc
+.envrc
+
+# 以 .secret.zshrc 结尾的文件不被 git track
+*.secret.zshrc
