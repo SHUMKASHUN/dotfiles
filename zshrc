@@ -32,6 +32,7 @@ source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # source ~/.zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # ---- oh-my-zsh ----
+ZSH_DISABLE_COMPFIX=true
 source ~/.zsh/plugins/oh-my-zsh/oh-my-zsh.sh
 
 # ---- User activation ----

@@ -14,7 +14,11 @@ else
         zsh_path=`which zsh`
         zsh_version=`zsh --version | cut -d' ' -f2`
         echo "🔄 zsh($zsh_path version $zsh_version) is available. Attempting to switch to zsh..."
-        sudo chsh -s "$zsh_path" "$LOGNAME"
+        if [ "$(whoami)" = "root" ]; then
+            chsh -s "$zsh_path" "$LOGNAME"
+        else
+            sudo chsh -s "$zsh_path" "$LOGNAME"
+        fi
         echo "🔔 Shell changed. Please log out and log back in for changes to take effect."
         echo
     else
@@ -26,9 +30,18 @@ else
         echo "  sudo apt update"
         echo "  sudo apt install zsh -y"
         echo "  sudo chsh -s \"\`which zsh\`\" \"\\\$LOGNAME\""
-        echo
+        echo "  Trying automatically run for you"
+        if [ "$(whoami)" = "root" ]; then
+            apt install zsh -y
+            chsh -s \"\`which zsh\`\" \"\\\$LOGNAME\"
+        else
+            sudo apt install zsh -y
+            sudo chsh -s \"\`which zsh\`\" \"\\\$LOGNAME\"
+        fi    
     fi
-
+    echo "export SHELL=/bin/zsh" >> ~/.bashrc
+    echo "exec /bin/zsh -l" >> ~/.bashrc
+    
     echo "ℹ️ Current shell path is: $current_shell"
     echo
 fi
