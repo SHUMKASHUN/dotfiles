@@ -1,13 +1,10 @@
-get_system_info() {
-    OS_TYPE="$(uname)"
-    ARCH_TYPE="$(uname -m)"
-}
-if [ "$OS_TYPE" = "Linux" ]; then
+if [ "$(uname)" = "Linux" ]; then
+    echo "...apt update..."
     apt update
 fi
 
 bash ./zsh/activate_zsh.sh
-bash ./brew/install.sh
+bash ./brew/install_app.sh
 ./install
 bash ./zsh/install_plugins.sh
 

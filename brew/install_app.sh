@@ -7,14 +7,14 @@ if uname -a | grep -q "Linux" && uname -m | grep -q "aarch64"; then
 fi
 
 # Update apt source
-if [ "$OS_TYPE" = "Linux" ]; then
+if [ "$(uname)" = "Linux" ]; then
     apt install -y gpg wget
     mkdir -p /etc/apt/keyrings
     wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
     echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | tee /etc/apt/sources.list.d/gierens.list
     chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
-    curl -fsSL https://apt.cli.rs/pubkey.asc | sudo tee -a /usr/share/keyrings/rust-tools.asc
-    curl -fsSL https://apt.cli.rs/rust-tools.list | sudo tee /etc/apt/sources.list.d/rust-tools.list
+    curl -fsSL https://apt.cli.rs/pubkey.asc | tee -a /usr/share/keyrings/rust-tools.asc
+    curl -fsSL https://apt.cli.rs/rust-tools.list | tee /etc/apt/sources.list.d/rust-tools.list
     apt update
 fi
 
@@ -23,7 +23,7 @@ fi
 # 安装单个包的函数
 install_package() {
     echo "📦 正在安装: $1"
-    if [ "$OS_TYPE" = "Linux" ]; then
+    if [ "$(uname)" = "Linux" ]; then
         if apt install -y "$1" 2>/dev/null; then
             echo "✅ 成功安装: $1"
         else
