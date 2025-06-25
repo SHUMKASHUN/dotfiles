@@ -22,6 +22,7 @@ fpath=(~/.zsh/plugins/zsh-completions/src $fpath)
 
 # ---- zsh-syntax-highlighting ----
 source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # ---- zsh-autocomplete ----
 # 必须将 autocomplete 放在 syntax-highlighting 下才能让新建 zsh 不再出现样式警告
@@ -93,7 +94,7 @@ source ~/.zsh/aliases.sh
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# plugins=(git z)
+plugins=(git cp)
 
 
 
@@ -130,7 +131,7 @@ source ~/.zsh/aliases.sh
 #alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
 # ---- fzf ----
-source ~/.dotfiles/zsh/fzf.zshrc
+# source ~/.dotfiles/zsh/fzf.zshrc
 # ---- zoxide ----
 eval "$(zoxide init zsh)"
 
@@ -150,3 +151,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+[ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.

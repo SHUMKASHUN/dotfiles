@@ -3,8 +3,9 @@ if [ "$(uname)" = "Linux" ]; then
     apt update
 fi
 
+# Make sure to activate zsh
 bash ./zsh/activate_zsh.sh
-bash ./brew/install_app.sh
-./install
 bash ./zsh/install_plugins.sh
+./install
+bash ./x-cmd/install_x.sh
 
